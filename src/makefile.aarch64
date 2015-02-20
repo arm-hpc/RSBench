@@ -35,7 +35,7 @@ CFLAGS := -std=gnu99
 # gcc Compiler
 ifeq ($(COMPILER),gnu)
   CC = gcc
-  CFLAGS += -fopenmp -march=armv8-a+fp+simd -ftree-vectorize -fomit-frame-pointer -funsafe-math-optimizations -funroll-loops
+  CFLAGS += -fopenmp -DARM_MARKERS -DGEM5_MARKERS -march=armv8-a+fp+simd -ftree-vectorize -fomit-frame-pointer -funsafe-math-optimizations -funroll-loops
 endif
 
 # intel compiler

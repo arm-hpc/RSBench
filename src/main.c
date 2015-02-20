@@ -1,4 +1,5 @@
 #include "rsbench.h"
+#include "marker_stub.h"
 
 int main(int argc, char * argv[])
 {
@@ -25,6 +26,8 @@ int main(int argc, char * argv[])
 	center_print("INPUT SUMMARY", 79);
 	border_print();
 	print_input_summary(input);
+
+	MARKER_INIT;
 
 	// =====================================================================
 	// Prepare Pole Paremeter Grids
@@ -92,6 +95,7 @@ int main(int argc, char * argv[])
 
 	start = omp_get_wtime();
 
+	MARKER_START(0);
 
 	#pragma omp parallel default(none) \
 	shared(input, data) 
@@ -146,6 +150,8 @@ int main(int argc, char * argv[])
 		counter_stop(&eventset, num_papi_events);
 		#endif
 	}
+
+	MARKER_STOP(0);
 
 	stop = omp_get_wtime();
 	#ifndef PAPI
